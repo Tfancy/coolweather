@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.coolweather.android.application.MyApplication;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
@@ -44,7 +44,7 @@ public class ChooseAreaFragment extends Fragment {
 
     public static final int LEVEL_COUNTY = 2;
 
-    private ProgressDialog progresssDialog;
+    private static ProgressDialog progresssDialog;
 
     private TextView titleText;
 
@@ -87,16 +87,14 @@ public class ChooseAreaFragment extends Fragment {
     private int currentLevel;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.choose_area,container,false);
         titleText = (TextView) view.findViewById(R.id.title_text);
         backButton = (Button) view.findViewById(R.id.back_button);
         listView = (ListView) view.findViewById(R.id.list_view);
-        adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,dataList);
+        adapter = new ArrayAdapter<>(MyApplication.getContext(),R.layout.list_item,dataList);
         listView.setAdapter(adapter);
         return view;
     }
@@ -180,7 +178,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
         countyList = DataSupport.where("cityid = ?",String.valueOf(selectedCity.getId())).find(County.class);
-        if(cityList.size() > 0){
+        if(countyList.size() > 0){
             dataList.clear();
             for(County county : countyList){
                 dataList.add(county.getCountyName());
@@ -203,11 +201,10 @@ public class ChooseAreaFragment extends Fragment {
             public void onFailure(Call call, IOException e) {
                 //通过runOnUiThread()方法回到主线程处理逻辑
                 getActivity().runOnUiThread(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
                         closeProgressDialog();
-                        Toast.makeText(getContext(),"加载失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApplication.getContext(),"加载失败",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -257,11 +254,13 @@ public class ChooseAreaFragment extends Fragment {
     /**
      * 关闭进度对话框
      */
-    private void closeProgressDialog(){
+    public void closeProgressDialog(){
         if(progresssDialog != null){
             progresssDialog.dismiss();
         }
     }
 
-
+    public static ProgressDialog getProgresssDialog() {
+        return progresssDialog;
+    }
 }

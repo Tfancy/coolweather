@@ -10,4 +10,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(ChooseAreaFragment.getProgresssDialog() != null){
+            ChooseAreaFragment.getProgresssDialog().dismiss();
+        }
+    }
 }
