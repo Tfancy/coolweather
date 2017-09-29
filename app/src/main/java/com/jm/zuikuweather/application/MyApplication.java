@@ -1,10 +1,9 @@
-package com.coolweather.android.application;
+package com.jm.zuikuweather.application;
 
 import android.app.Application;
 import android.content.Context;
 
 import org.litepal.LitePalApplication;
-import org.litepal.util.Const;
 
 /**
  * Created by t_jm on 2017/9/15.

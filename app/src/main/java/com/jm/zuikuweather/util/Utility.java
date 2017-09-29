@@ -1,12 +1,12 @@
-package com.coolweather.android.util;
+package com.jm.zuikuweather.util;
 
 import android.text.TextUtils;
 
-import com.coolweather.android.db.City;
-import com.coolweather.android.db.County;
-import com.coolweather.android.db.Province;
-import com.coolweather.android.gson.Weather;
 import com.google.gson.Gson;
+import com.jm.zuikuweather.db.City;
+import com.jm.zuikuweather.db.County;
+import com.jm.zuikuweather.db.Province;
+import com.jm.zuikuweather.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;

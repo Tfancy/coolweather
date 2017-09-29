@@ -1,4 +1,4 @@
-package com.coolweather.android.util;
+package com.jm.zuikuweather.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -1,4 +1,4 @@
-package com.coolweather.android.service;
+package com.jm.zuikuweather.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,11 +8,10 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.annotation.IntDef;
 
-import com.coolweather.android.gson.Weather;
-import com.coolweather.android.util.HttpUtil;
-import com.coolweather.android.util.Utility;
+import com.jm.zuikuweather.gson.Weather;
+import com.jm.zuikuweather.util.HttpUtil;
+import com.jm.zuikuweather.util.Utility;
 
 import java.io.IOException;
 
