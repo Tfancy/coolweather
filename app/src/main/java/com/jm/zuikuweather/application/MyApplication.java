@@ -7,12 +7,14 @@ import org.litepal.LitePalApplication;
 
 /**
  * Created by t_jm on 2017/9/15.
+ * test push
  */
 
 public class MyApplication extends Application {
 
     private static Context context;
 
+	
     @Override
     public void onCreate() {
         super.onCreate();
